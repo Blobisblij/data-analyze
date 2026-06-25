@@ -1,0 +1,55 @@
+{
+	"name": "WERK",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "legacy",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "WVZ_ID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "PPP_ID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "CST_ID_INVOER",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "WVZ_MELDDATUM",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "WVZ_MEMO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WVZ_BONJAAR",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "WVZ_BONNUMMER",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "WVZ_AFGEROND",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "WERK"
+		}
+	}
+}

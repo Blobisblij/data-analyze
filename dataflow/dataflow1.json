@@ -1,0 +1,223 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "COMPLEX",
+						"type": "DatasetReference"
+					},
+					"name": "COMPLEX"
+				},
+				{
+					"dataset": {
+						"referenceName": "ELEMENT",
+						"type": "DatasetReference"
+					},
+					"name": "ELEMENT"
+				},
+				{
+					"dataset": {
+						"referenceName": "ELEMENTWAARDE",
+						"type": "DatasetReference"
+					},
+					"name": "ELEMENTWAARDE"
+				},
+				{
+					"dataset": {
+						"referenceName": "OBJECT",
+						"type": "DatasetReference"
+					},
+					"name": "OBJECT"
+				},
+				{
+					"dataset": {
+						"referenceName": "POSTCODE",
+						"type": "DatasetReference"
+					},
+					"name": "POSTCODE"
+				},
+				{
+					"dataset": {
+						"referenceName": "WERKOPDRACHT",
+						"type": "DatasetReference"
+					},
+					"name": "WERKOPDRACHT"
+				},
+				{
+					"dataset": {
+						"referenceName": "WERKSOORT",
+						"type": "DatasetReference"
+					},
+					"name": "WERKSOORT"
+				},
+				{
+					"dataset": {
+						"referenceName": "WERKVERZOEK",
+						"type": "DatasetReference"
+					},
+					"name": "WERKVERZOEK"
+				},
+				{
+					"dataset": {
+						"referenceName": "OPDRACHT",
+						"type": "DatasetReference"
+					},
+					"name": "OPDRACHT"
+				},
+				{
+					"dataset": {
+						"referenceName": "PROJECT",
+						"type": "DatasetReference"
+					},
+					"name": "PROJECT"
+				},
+				{
+					"dataset": {
+						"referenceName": "PROJECTREGEL",
+						"type": "DatasetReference"
+					},
+					"name": "PROJECTREGEL"
+				},
+				{
+					"dataset": {
+						"referenceName": "SOORT",
+						"type": "DatasetReference"
+					},
+					"name": "SOORT"
+				},
+				{
+					"dataset": {
+						"referenceName": "WERK",
+						"type": "DatasetReference"
+					},
+					"name": "WERK"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     validationMode: 'none',",
+				"     namespaces: true) ~> COMPLEX",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     validationMode: 'none',",
+				"     namespaces: true) ~> ELEMENT",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     validationMode: 'none',",
+				"     namespaces: true) ~> ELEMENTWAARDE",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     validationMode: 'none',",
+				"     namespaces: true) ~> OBJECT",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     validationMode: 'none',",
+				"     namespaces: true) ~> POSTCODE",
+				"source(output(",
+				"          WOD_ID as string,",
+				"          NWS_ID as string,",
+				"          WVZ_ID as string,",
+				"          OPDRACHTDATUM as string,",
+				"          STARTDATUM as string,",
+				"          EINDDATUM as string,",
+				"          BONVOLG as string,",
+				"          AFGEROND as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> WERKOPDRACHT",
+				"source(output(",
+				"          NWS_ID as string,",
+				"          CODE as string,",
+				"          OMSCHRIJVING as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> WERKSOORT",
+				"source(output(",
+				"          NWS_ID as string,",
+				"          CODE as string,",
+				"          OMSCHRIJVING as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> WERKVERZOEK",
+				"source(output(",
+				"          WOD_ID as long,",
+				"          NWS_ID as long,",
+				"          WVZ_ID as long,",
+				"          WOD_OPDRACHTDATUM as timestamp,",
+				"          WOD_WERKELIJKE_STARTDATUM as timestamp,",
+				"          WOD_WERKELIJKE_EINDDATUM as timestamp,",
+				"          WOD_BONVOLG as long,",
+				"          WOD_AFGEROND as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> OPDRACHT",
+				"source(output(",
+				"          PPP_ID as long,",
+				"          PPP_PROJECT_OMS as string,",
+				"          PPP_STARTDATUM as timestamp,",
+				"          PPP_EINDDATUM as timestamp,",
+				"          PPP_MEMO as string,",
+				"          PPP_BEGROTINGSOM_INCL_BTW as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> PROJECT",
+				"source(output(",
+				"          PPR_ID as long,",
+				"          PPP_ID as long,",
+				"          PPR_START_DATUM as timestamp,",
+				"          PPR_EIND_DATUM as timestamp,",
+				"          PPR_JAAR as long,",
+				"          PPR_OMSCHRIJVING as string,",
+				"          PPR_MEMO as string,",
+				"          PPR_TOTAAL_BEGROOT as double,",
+				"          OBJECT_ID as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> PROJECTREGEL",
+				"source(output(",
+				"          NWS_ID as long,",
+				"          NWS_WRKSRT_CODE as long,",
+				"          NWS_WRKSRT_OMS as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> SOORT",
+				"source(output(",
+				"          WVZ_ID as long,",
+				"          PPP_ID as long,",
+				"          CST_ID_INVOER as long,",
+				"          WVZ_MELDDATUM as timestamp,",
+				"          WVZ_MEMO as string,",
+				"          WVZ_BONJAAR as long,",
+				"          WVZ_BONNUMMER as long,",
+				"          WVZ_AFGEROND as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> WERK"
+			]
+		}
+	}
+}

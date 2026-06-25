@@ -1,0 +1,56 @@
+{
+	"name": "OPDRACHT",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "legacy",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "WOD_ID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "NWS_ID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "WVZ_ID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "WOD_OPDRACHTDATUM",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "WOD_WERKELIJKE_STARTDATUM",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "WOD_WERKELIJKE_EINDDATUM",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "WOD_BONVOLG",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "WOD_AFGEROND",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "OPDRACHT"
+		}
+	}
+}

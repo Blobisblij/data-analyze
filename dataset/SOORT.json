@@ -1,0 +1,31 @@
+{
+	"name": "SOORT",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "legacy",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "NWS_ID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "NWS_WRKSRT_CODE",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "NWS_WRKSRT_OMS",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "SOORT"
+		}
+	}
+}

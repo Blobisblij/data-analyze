@@ -1,0 +1,36 @@
+{
+	"name": "WERKVERZOEK",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "XMLLinkedservicecdfs01",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "WerkSoort.csv",
+				"container": "csv-files"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "NWS_ID",
+				"type": "String"
+			},
+			{
+				"name": "CODE",
+				"type": "String"
+			},
+			{
+				"name": "OMSCHRIJVING",
+				"type": "String"
+			}
+		]
+	}
+}
