@@ -5,6 +5,17 @@
 			"referenceName": "XMLLinkedservicecdfs01",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"STRAAT": {
+				"type": "string"
+			},
+			"WOONPLAATS": {
+				"type": "string"
+			},
+			"POSTCODE": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "Xml",
 		"typeProperties": {
@@ -12,7 +23,8 @@
 				"type": "AzureBlobStorageLocation",
 				"fileName": "postcode.xml",
 				"container": "xml-files"
-			}
+			},
+			"encodingName": "UTF-8"
 		}
 	}
 }
