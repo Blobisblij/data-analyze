@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "WerkSoort.csv",
+				"fileName": "WerkVerzoek.csv",
 				"container": "csv-files"
 			},
 			"columnDelimiter": ",",
@@ -20,15 +20,47 @@
 		},
 		"schema": [
 			{
-				"name": "NWS_ID",
+				"name": "WVZ_ID",
 				"type": "String"
 			},
 			{
-				"name": "CODE",
+				"name": "CST_ID_INVOER",
+				"type": "String"
+			},
+			{
+				"name": "MELDDATUM",
 				"type": "String"
 			},
 			{
 				"name": "OMSCHRIJVING",
+				"type": "String"
+			},
+			{
+				"name": "BONJAAR",
+				"type": "String"
+			},
+			{
+				"name": "BONNUMMER",
+				"type": "String"
+			},
+			{
+				"name": "AFGEROND",
+				"type": "String"
+			},
+			{
+				"name": "OBJECT_NAAM",
+				"type": "String"
+			},
+			{
+				"name": "STRAAT",
+				"type": "String"
+			},
+			{
+				"name": "HUISNUMMER",
+				"type": "String"
+			},
+			{
+				"name": "WOONPLAATS",
 				"type": "String"
 			}
 		]

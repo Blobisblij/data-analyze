@@ -12,7 +12,8 @@
 				"type": "AzureBlobStorageLocation",
 				"fileName": "element.xml",
 				"container": "xml-files"
-			}
+			},
+			"encodingName": "ISO-8859-1"
 		}
 	}
 }

@@ -1,0 +1,54 @@
+{
+	"name": "OPDRACHTOLTP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "OLTP",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "OPDRACHT_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SOORT_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WERKVERZOEK_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OPDRACHTDATUM",
+				"type": "nvarchar"
+			},
+			{
+				"name": "STARTDATUM",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EINDDATUM",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BON",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AFGEROND",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "WERKOPDRACHT"
+		}
+	}
+}
