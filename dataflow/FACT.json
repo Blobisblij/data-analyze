@@ -77,7 +77,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> WERKVERZOEKID",
-				"WERKVERZOEKID, WERKOPDRACHTID join(PROJECT_ID == OPDRACHT_ID,",
+				"WERKVERZOEKID, WERKOPDRACHTID join(WERKVERZOEKID@WERKVERZOEK_ID == WERKOPDRACHTID@WERKVERZOEK_ID,",
 				"     joinType:'left',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
