@@ -37,6 +37,12 @@
 				},
 				{
 					"name": "WERKOPDRACHTID"
+				},
+				{
+					"name": "surrogateKey1"
+				},
+				{
+					"name": "select1"
 				}
 			],
 			"scriptLines": [
@@ -89,7 +95,18 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> WERKOPDRACHTID",
-				"join1 sink(allowSchemaDrift: true,",
+				"select1 keyGenerate(output(WERK_ID as long),",
+				"     startAt: 1L,",
+				"     stepValue: 1L) ~> surrogateKey1",
+				"join1 select(mapColumn(",
+				"          WERKVERZOEK_ID = WERKVERZOEKID@WERKVERZOEK_ID,",
+				"          BOT_ID,",
+				"          PROJECT_ID,",
+				"          OPDRACHT_ID",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"surrogateKey1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          WERK_ID as long,",
@@ -105,7 +122,13 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> FACT"
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          WERK_ID,",
+				"          BOT_ID,",
+				"          WERKVERZOEK_ID,",
+				"          OPDRACHT_ID",
+				"     )) ~> FACT"
 			]
 		}
 	}
