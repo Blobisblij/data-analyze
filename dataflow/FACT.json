@@ -1,0 +1,136 @@
+{
+	"name": "FACT",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "OLAPWEER",
+						"type": "DatasetReference"
+					},
+					"name": "WEER"
+				},
+				{
+					"dataset": {
+						"referenceName": "WERKVERZOEK",
+						"type": "DatasetReference"
+					},
+					"name": "WERKVERZOEK"
+				},
+				{
+					"dataset": {
+						"referenceName": "WERKOPDRACHT",
+						"type": "DatasetReference"
+					},
+					"name": "WERKOPDRACHT"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "OLAPFACT",
+						"type": "DatasetReference"
+					},
+					"name": "FACT"
+				}
+			],
+			"transformations": [
+				{
+					"name": "WERKVERZOEKID"
+				},
+				{
+					"name": "join1"
+				},
+				{
+					"name": "WERKOPDRACHTID"
+				},
+				{
+					"name": "join2"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          WEER_ID as long,",
+				"          TEMPRATUUR as double,",
+				"          NEERSLAG as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> WEER",
+				"source(output(",
+				"          WERKVERZOEK_ID as long,",
+				"          OMSCHRIJVING as string,",
+				"          AFGEROND as string,",
+				"          MELDDATUM as string,",
+				"          BONJAAR as string,",
+				"          BONNMMR as long,",
+				"          CST_ID_INVOER as long,",
+				"          BOT_ID as long,",
+				"          MEMO as string,",
+				"          PROJECT_ID as long",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> WERKVERZOEK",
+				"source(output(",
+				"          OPDRACHT_ID as long,",
+				"          SOORT_ID as long,",
+				"          WERKVERZOEK_ID as long,",
+				"          OPDRACHTDATUM as string,",
+				"          STARTDATUM as string,",
+				"          EINDDATUM as string,",
+				"          BON as long,",
+				"          AFGEROND as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> WERKOPDRACHT",
+				"WERKVERZOEK select(mapColumn(",
+				"          WERKVERZOEK_ID,",
+				"          BOT_ID,",
+				"          PROJECT_ID",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> WERKVERZOEKID",
+				"WERKVERZOEKID, WERKOPDRACHTID join(PROJECT_ID == OPDRACHT_ID,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"WERKOPDRACHT select(mapColumn(",
+				"          OPDRACHT_ID,",
+				"          SOORT_ID,",
+				"          WERKVERZOEK_ID",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> WERKOPDRACHTID",
+				"join1, WEER join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     joinType:'outer',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join2",
+				"join2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          WERK_ID as long,",
+				"          BOT_ID as long,",
+				"          WERKVERZOEK_ID as long,",
+				"          OPDRACHT_ID as long,",
+				"          WEER_ID as long",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> FACT"
+			]
+		}
+	}
+}
