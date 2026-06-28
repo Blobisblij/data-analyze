@@ -6,13 +6,6 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "OLAPWEER",
-						"type": "DatasetReference"
-					},
-					"name": "WEER"
-				},
-				{
-					"dataset": {
 						"referenceName": "WERKVERZOEK",
 						"type": "DatasetReference"
 					},
@@ -44,21 +37,9 @@
 				},
 				{
 					"name": "WERKOPDRACHTID"
-				},
-				{
-					"name": "join2"
 				}
 			],
 			"scriptLines": [
-				"source(output(",
-				"          WEER_ID as long,",
-				"          TEMPRATUUR as double,",
-				"          NEERSLAG as double",
-				"     ),",
-				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> WEER",
 				"source(output(",
 				"          WERKVERZOEK_ID as long,",
 				"          OMSCHRIJVING as string,",
@@ -108,12 +89,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> WERKOPDRACHTID",
-				"join1, WEER join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
-				"     joinType:'outer',",
-				"     matchType:'exact',",
-				"     ignoreSpaces: false,",
-				"     broadcast: 'auto')~> join2",
-				"join2 sink(allowSchemaDrift: true,",
+				"join1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          WERK_ID as long,",
