@@ -1,6 +1,347 @@
 {
 	"name": "pipeline1",
 	"properties": {
+		"activities": [
+			{
+				"name": "werkverzoek",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "WERKVERZOEK_ID",
+									"type": "bigint",
+									"precision": 19
+								},
+								"sink": {
+									"name": "WERKVERZOEK_ID",
+									"type": "bigint",
+									"precision": 19
+								}
+							},
+							{
+								"source": {
+									"name": "OMSCHRIJVING",
+									"type": "nvarchar"
+								},
+								"sink": {
+									"name": "OMSCHRIJVING",
+									"type": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MEMO",
+									"type": "nvarchar"
+								},
+								"sink": {
+									"name": "MEMO",
+									"type": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AFGEROND",
+									"type": "nvarchar"
+								},
+								"sink": {
+									"name": "AFGEROND",
+									"type": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MELDDATUM",
+									"type": "nvarchar"
+								},
+								"sink": {
+									"name": "MELDDATUM",
+									"type": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BONJAAR",
+									"type": "nvarchar"
+								},
+								"sink": {
+									"name": "BONJAAR",
+									"type": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BONNMMR",
+									"type": "bigint",
+									"precision": 19
+								},
+								"sink": {
+									"name": "BONNMMR",
+									"type": "nvarchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "WERKVERZOEK",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "OLAPWERKVERZOEK",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "PROJECT",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "PROJECT_ID",
+									"type": "bigint",
+									"precision": 19
+								},
+								"sink": {
+									"name": "PROJECT_ID",
+									"type": "bigint",
+									"precision": 19
+								}
+							},
+							{
+								"source": {
+									"name": "OMSCHRIJVING",
+									"type": "nvarchar"
+								},
+								"sink": {
+									"name": "OMSCHRIJVING",
+									"type": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BEGROTEBEDRAGBTW",
+									"type": "float",
+									"precision": 15
+								},
+								"sink": {
+									"name": "BEGROTEBEDRAGBTW",
+									"type": "float",
+									"precision": 15
+								}
+							},
+							{
+								"source": {
+									"name": "STARTDATUM",
+									"type": "nvarchar"
+								},
+								"sink": {
+									"name": "STARTDATUM",
+									"type": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "EINDDATUM",
+									"type": "nvarchar"
+								},
+								"sink": {
+									"name": "EINDDATUM",
+									"type": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MEMO",
+									"type": "nvarchar"
+								},
+								"sink": {
+									"name": "MEMO",
+									"type": "nvarchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "PROJECT",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "OLAPRPOJECT",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "WERKOPDRACHT",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "object",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OBJECTEN",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "OLAPOBJECT",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "WEER",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "FACTWERK",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
 		"annotations": []
 	}
 }
