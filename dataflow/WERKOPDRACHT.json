@@ -61,7 +61,7 @@
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> WERKOPDACHT",
 				"WERKOPDACHT, WERKSOORT join(WERKOPDACHT@SOORT_ID == WERKSOORT@SOORT_ID,",
-				"     joinType:'left',",
+				"     joinType:'inner',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> WERKSOORINOPDRACHT",

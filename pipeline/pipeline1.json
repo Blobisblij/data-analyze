@@ -130,7 +130,8 @@
 					{
 						"activity": "werkverzoek",
 						"dependencyConditions": [
-							"Succeeded"
+							"Succeeded",
+							"Failed"
 						]
 					}
 				],
@@ -249,7 +250,8 @@
 					{
 						"activity": "object",
 						"dependencyConditions": [
-							"Succeeded"
+							"Succeeded",
+							"Failed"
 						]
 					}
 				],
@@ -280,7 +282,8 @@
 					{
 						"activity": "PROJECT",
 						"dependencyConditions": [
-							"Succeeded"
+							"Succeeded",
+							"Failed"
 						]
 					}
 				],
@@ -333,7 +336,8 @@
 					{
 						"activity": "WERKOPDRACHT",
 						"dependencyConditions": [
-							"Succeeded"
+							"Succeeded",
+							"Failed"
 						]
 					}
 				],
