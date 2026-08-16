@@ -36,7 +36,7 @@
 			"value": "cdfs"
 		},
 		"OLAP_properties_typeProperties_server": {
-			"value": "sql-backend-cdfs01.database.windows.net"
+			"value": "sql-cdfs03.database.windows.net"
 		},
 		"OLAP_properties_typeProperties_database": {
 			"value": "sql-olap-cdfs01"
@@ -45,7 +45,7 @@
 			"value": "cdfs"
 		},
 		"OLTP_properties_typeProperties_server": {
-			"value": "sql-backend-cdfs01.database.windows.net"
+			"value": "sql-cdfs03.database.windows.net"
 		},
 		"OLTP_properties_typeProperties_database": {
 			"value": "sql-oltp-cdfs01"

@@ -49,7 +49,7 @@
 		},
 		"OLAP_properties_typeProperties_server": {
 			"type": "string",
-			"defaultValue": "sql-backend-cdfs01.database.windows.net"
+			"defaultValue": "sql-cdfs03.database.windows.net"
 		},
 		"OLAP_properties_typeProperties_database": {
 			"type": "string",
@@ -61,7 +61,7 @@
 		},
 		"OLTP_properties_typeProperties_server": {
 			"type": "string",
-			"defaultValue": "sql-backend-cdfs01.database.windows.net"
+			"defaultValue": "sql-cdfs03.database.windows.net"
 		},
 		"OLTP_properties_typeProperties_database": {
 			"type": "string",
