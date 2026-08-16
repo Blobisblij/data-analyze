@@ -312,6 +312,70 @@
 					"enableSkipIncompatibleRow": true,
 					"translator": {
 						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "BOT_ID",
+									"type": "bigint",
+									"physicalType": "bigint",
+									"precision": 19
+								},
+								"sink": {
+									"name": "BOT_ID",
+									"type": "bigint",
+									"physicalType": "bigint",
+									"precision": 19
+								}
+							},
+							{
+								"source": {
+									"name": "INGANGSDATUM",
+									"type": "nvarchar",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "INGANGSDATUM",
+									"type": "nvarchar",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "OBJECT_TYPE",
+									"type": "nvarchar",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "OBJECT_TYPE",
+									"type": "nvarchar",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DAEB_YN",
+									"type": "nvarchar",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "DAEB_YN",
+									"type": "nvarchar",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "NAAM",
+									"type": "nvarchar",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "NAAM",
+									"type": "nvarchar",
+									"physicalType": "nvarchar"
+								}
+							}
+						],
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
